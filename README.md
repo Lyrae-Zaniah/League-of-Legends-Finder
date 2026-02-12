@@ -1,123 +1,123 @@
 # League of Legends Stats Application
 
-Aplicação Spring Boot que consome a API do Riot Games para exibir estatísticas detalhadas de jogadores do League of Legends.
+Spring Boot application that consumes the Riot Games API to display detailed statistics of League of Legends players.
 
-## 📋 Funcionalidades
+## 📋 Features
 
-- ✅ Busca de jogadores por nome e tag
-- ✅ Foto de perfil do jogador
-- ✅ Total de partidas, vitórias e derrotas
-- ✅ Porcentagem de vitória
-- ✅ Top 5 campeões mais usados com estatísticas detalhadas
-- ✅ Taxa de vitória por campeão
-- ✅ Lista de jogadores frequentes (amigos)
-- ✅ Estatísticas de partidas jogadas com cada amigo
-- ✅ Interface web simples e responsiva
+- ✅ Player search by name and tag
+- ✅ Player profile picture
+- ✅ Total matches, wins and losses
+- ✅ Win percentage
+- ✅ Top 5 most played champions with detailed statistics
+- ✅ Win rate per champion
+- ✅ List of frequent players (friends)
+- ✅ Match statistics played with each friend
+- ✅ Simple and responsive web interface
 
-## 🚀 Como Usar
+## 🚀 How to Use
 
-### 1. Obter API Key do Riot Games
+### 1. Get Riot Games API Key
 
-1. Acesse: https://developer.riotgames.com/
-2. Faça login com sua conta Riot
-3. Copie sua Development API Key
+1. Go to: https://developer.riotgames.com/
+2. Login with your Riot account
+3. Copy your Development API Key
 
-### 2. Configurar a Aplicação
+### 2. Configure the Application
 
-Edite o arquivo `src/main/resources/application.properties`:
+Edit the `src/main/resources/application.properties` file:
 
 ```properties
-riot.api.key=SUA-API-KEY-AQUI
+riot.api.key=YOUR-API-KEY-HERE
 ```
 
-**Importante:** Substitua `SUA-API-KEY-AQUI` pela sua API key real do Riot Games.
+**Important:** Replace `YOUR-API-KEY-HERE` with your actual Riot Games API key.
 
-### 3. Executar a Aplicação
+### 3. Run the Application
 
-#### Opção 1: Usando Maven Wrapper (Recomendado)
+#### Option 1: Using Maven Wrapper (Recommended)
 ```bash
 ./mvnw spring-boot:run
 ```
 
-#### Opção 2: Usando Maven instalado
+#### Option 2: Using installed Maven
 ```bash
 mvn spring-boot:run
 ```
 
-#### Opção 3: Gerando JAR e executando
+#### Option 3: Generating JAR and running
 ```bash
 mvn clean package
 java -jar target/lol-stats-1.0.0.jar
 ```
 
-### 4. Acessar a Aplicação
+### 4. Access the Application
 
-Abra seu navegador e acesse:
+Open your browser and go to:
 ```
 http://localhost:8080
 ```
 
-## 🎮 Como Buscar um Jogador
+## 🎮 How to Search for a Player
 
-1. Digite o nome do jogador (ex: "Hide on bush")
-2. Digite a tag (ex: "KR1" ou "BR1")
-3. Escolha quantas partidas deseja analisar (padrão: 20)
-4. Clique em "Buscar"
+1. Enter the player name (e.g., "Hide on bush")
+2. Enter the tag (e.g., "KR1" or "BR1")
+3. Choose how many matches you want to analyze (default: 20)
+4. Click "Search"
 
-**Exemplo de jogadores famosos:**
+**Examples of famous players:**
 - Faker: `Hide on bush#KR1`
 - Caps: `Caps#EUW`
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 LoL/
 ├── src/
 │   ├── main/
 │   │   ├── java/com/lol/stats/
-│   │   │   ├── LolStatsApplication.java      # Classe principal
+│   │   │   ├── LolStatsApplication.java      # Main class
 │   │   │   ├── config/
-│   │   │   │   └── RiotApiConfig.java        # Configurações da API
+│   │   │   │   └── RiotApiConfig.java        # API configurations
 │   │   │   ├── controller/
-│   │   │   │   ├── PlayerController.java     # Endpoints REST
-│   │   │   │   └── HomeController.java       # Controller para página inicial
+│   │   │   │   ├── PlayerController.java     # REST endpoints
+│   │   │   │   └── HomeController.java       # Home page controller
 │   │   │   ├── dto/
-│   │   │   │   ├── AccountDto.java           # DTO para Account API
-│   │   │   │   ├── SummonerDto.java          # DTO para Summoner API
-│   │   │   │   └── MatchDto.java             # DTO para Match API
+│   │   │   │   ├── AccountDto.java           # DTO for Account API
+│   │   │   │   ├── SummonerDto.java          # DTO for Summoner API
+│   │   │   │   └── MatchDto.java             # DTO for Match API
 │   │   │   ├── model/
-│   │   │   │   ├── PlayerStats.java          # Modelo de estatísticas do jogador
-│   │   │   │   ├── ChampionStats.java        # Estatísticas por campeão
-│   │   │   │   └── FriendStats.java          # Estatísticas de amigos
+│   │   │   │   ├── PlayerStats.java          # Player statistics model
+│   │   │   │   ├── ChampionStats.java        # Statistics per champion
+│   │   │   │   └── FriendStats.java          # Friend statistics
 │   │   │   └── service/
-│   │   │       └── RiotApiService.java       # Serviço de integração com API
+│   │   │       └── RiotApiService.java       # API integration service
 │   │   └── resources/
-│   │       ├── application.properties        # Configurações
+│   │       ├── application.properties        # Configuration
 │   │       └── static/
-│   │           ├── index.html                # Interface web
-│   │           ├── styles.css                # Estilos
+│   │           ├── index.html                # Web interface
+│   │           ├── styles.css                # Styles
 │   │           └── script.js                 # JavaScript
 │   └── test/
-└── pom.xml                                   # Dependências Maven
+└── pom.xml                                   # Maven dependencies
 ```
 
-## 🔌 Endpoints da API
+## 🔌 API Endpoints
 
 ### GET /api/player/stats
 
-Busca estatísticas de um jogador.
+Fetches statistics for a player.
 
-**Parâmetros:**
-- `gameName` (obrigatório): Nome do jogador
-- `tagLine` (obrigatório): Tag do jogador (ex: BR1)
-- `matchCount` (opcional): Número de partidas a analisar (padrão: 20, máx: 100)
+**Parameters:**
+- `gameName` (required): Player name
+- `tagLine` (required): Player tag (e.g., BR1)
+- `matchCount` (optional): Number of matches to analyze (default: 20, max: 100)
 
-**Exemplo:**
+**Example:**
 ```
 GET http://localhost:8080/api/player/stats?gameName=Faker&tagLine=KR1&matchCount=20
 ```
 
-**Resposta:**
+**Response:**
 ```json
 {
   "gameName": "Faker",
@@ -133,7 +133,7 @@ GET http://localhost:8080/api/player/stats?gameName=Faker&tagLine=KR1&matchCount
 }
 ```
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
 ### Backend
 - **Java 17**
@@ -141,106 +141,106 @@ GET http://localhost:8080/api/player/stats?gameName=Faker&tagLine=KR1&matchCount
   - Spring Web
   - Spring Boot DevTools
   - Validation
-- **Lombok** - Redução de código boilerplate
-- **Jackson** - Processamento JSON
-- **RestTemplate** - Cliente HTTP
+- **Lombok** - Boilerplate code reduction
+- **Jackson** - JSON processing
+- **RestTemplate** - HTTP client
 
 ### Frontend
 - **HTML5**
-- **CSS3** - Design responsivo e gradientes
-- **JavaScript (Vanilla)** - Consumo da API REST
-- **Fetch API** - Requisições assíncronas
+- **CSS3** - Responsive design and gradients
+- **JavaScript (Vanilla)** - REST API consumption
+- **Fetch API** - Asynchronous requests
 
-### APIs Externas
+### External APIs
 - **Riot Games API**
-  - Account-v1: Informações de conta
-  - Summoner-v4: Dados do invocador
-  - Match-v5: Histórico de partidas
+  - Account-v1: Account information
+  - Summoner-v4: Summoner data
+  - Match-v5: Match history
 
-## ⚠️ Limitações e Observações
+## ⚠️ Limitations and Notes
 
-1. **API Key de Desenvolvimento**: A API key gratuita tem limite de requisições (20 requisições por segundo, 100 por 2 minutos)
-2. **Região**: Configurado para BR1 (Brasil). Para outras regiões, edite `application.properties`
-3. **Rate Limiting**: O código inclui delays para evitar rate limiting
-4. **Cache**: Não há cache implementado, cada busca faz novas requisições à API
+1. **Development API Key**: The free API key has request limits (20 requests per second, 100 per 2 minutes)
+2. **Region**: Configured for BR1 (Brazil). For other regions, edit `application.properties`
+3. **Rate Limiting**: The code includes delays to avoid rate limiting
+4. **Cache**: No cache implemented, each search makes new API requests
 
-## 🌍 Configuração de Regiões
+## 🌍 Region Configuration
 
-Para usar outras regiões, edite o `application.properties`:
+To use other regions, edit the `application.properties`:
 
 ```properties
-# Para Europa:
+# For Europe:
 riot.api.base.url=https://euw1.api.riotgames.com
 riot.api.americas.url=https://europe.api.riotgames.com
 
-# Para América do Norte:
+# For North America:
 riot.api.base.url=https://na1.api.riotgames.com
 riot.api.americas.url=https://americas.api.riotgames.com
 
-# Para Ásia:
+# For Asia:
 riot.api.base.url=https://kr.api.riotgames.com
 riot.api.americas.url=https://asia.api.riotgames.com
 ```
 
-## 📊 Estatísticas Coletadas
+## 📊 Statistics Collected
 
-### Por Jogador
-- Nome e Tag
-- Ícone de perfil
-- Nível do invocador
-- Total de partidas analisadas
-- Vitórias e derrotas
-- Taxa de vitória geral
+### Per Player
+- Name and Tag
+- Profile icon
+- Summoner level
+- Total matches analyzed
+- Wins and losses
+- Overall win rate
 
-### Por Campeão
-- Nome do campeão
-- Quantidade de partidas
-- Vitórias e derrotas
-- Taxa de vitória
-- KDA médio (Kills/Deaths/Assists)
+### Per Champion
+- Champion name
+- Number of matches
+- Wins and losses
+- Win rate
+- Average KDA (Kills/Deaths/Assists)
 
-### Jogadores Frequentes
-- Nome do jogador
-- Partidas jogadas juntos
-- Vitórias e derrotas em dupla
-- Taxa de vitória em dupla
+### Frequent Players
+- Player name
+- Matches played together
+- Wins and losses as duo
+- Win rate as duo
 
 ## 🐛 Troubleshooting
 
-### Erro 401 (Unauthorized)
-- Verifique se a API key está correta no `application.properties`
-- Certifique-se de que a API key não expirou (keys de desenvolvimento expiram em 24h)
+### Error 401 (Unauthorized)
+- Check if the API key is correct in `application.properties`
+- Make sure the API key hasn't expired (development keys expire in 24h)
 
-### Erro 404 (Not Found)
-- Verifique se o nome do jogador e tag estão corretos
-- Certifique-se de que o jogador existe na região configurada
+### Error 404 (Not Found)
+- Verify that the player name and tag are correct
+- Make sure the player exists in the configured region
 
-### Erro 429 (Too Many Requests)
-- Você atingiu o limite de requisições
-- Aguarde alguns minutos antes de tentar novamente
-- Reduza o número de partidas a serem analisadas
+### Error 429 (Too Many Requests)
+- You've reached the request limit
+- Wait a few minutes before trying again
+- Reduce the number of matches to be analyzed
 
-## 📝 Licença
+## 📝 License
 
-Este projeto é de código aberto e está disponível para fins educacionais.
+This project is open source and available for educational purposes.
 
-## 👨‍💻 Desenvolvimento
+## 👨‍💻 Development
 
-Para contribuir ou modificar o projeto:
+To contribute or modify the project:
 
-1. Clone o repositório
-2. Importe como projeto Maven
-3. Configure sua API key
-4. Execute a aplicação
-5. Faça suas modificações
-6. Teste localmente
+1. Clone the repository
+2. Import as a Maven project
+3. Configure your API key
+4. Run the application
+5. Make your modifications
+6. Test locally
 
-## 📞 Suporte
+## 📞 Support
 
-Para problemas relacionados à API do Riot Games, consulte:
-- Documentação oficial: https://developer.riotgames.com/docs/lol
-- Portal de desenvolvedores: https://developer.riotgames.com/
+For issues related to the Riot Games API, refer to:
+- Official documentation: https://developer.riotgames.com/docs/lol
+- Developer portal: https://developer.riotgames.com/
 
 ---
 
-**Nota**: Este projeto não é afiliado, associado, autorizado, endossado por, ou de qualquer forma oficialmente conectado com a Riot Games, Inc. ou qualquer uma de suas subsidiárias ou afiliadas.
+**Note**: This project is not affiliated with, associated with, authorized by, endorsed by, or in any way officially connected with Riot Games, Inc. or any of its subsidiaries or affiliates.
