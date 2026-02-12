@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Stats - Estatísticas de Jogadores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 League of Legends - Estatísticas de Jogadores</h1>
+            <p>Busque estatísticas detalhadas de qualquer jogador do LoL</p>
+        </header>
+
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="gameName" placeholder="Nome do Jogador" required>
+                <input type="text" id="tagLine" placeholder="Tag (ex: BR1)" required>
+                <input type="number" id="matchCount" placeholder="Partidas" value="20" min="1" max="100">
+                <button id="searchBtn" onclick="searchPlayer()">Buscar</button>
+            </div>
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Carregando estatísticas... Isso pode levar alguns segundos.</p>
+            </div>
+            <div id="error" class="error" style="display: none;"></div>
+        </div>
+
+        <div id="results" class="results" style="display: none;">
+            <!-- Player Info -->
+            <div class="player-card">
+                <div class="player-header">
+                    <img id="playerIcon" class="player-icon" alt="Profile Icon">
+                    <div class="player-info">
+                        <h2 id="playerName"></h2>
+                        <p>Nível: <span id="playerLevel"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total de Partidas</h3>
+                    <p class="stat-value" id="totalGames">0</p>
+                </div>
+                <div class="stat-card win">
+                    <h3>Vitórias</h3>
+                    <p class="stat-value" id="wins">0</p>
+                </div>
+                <div class="stat-card loss">
+                    <h3>Derrotas</h3>
+                    <p class="stat-value" id="losses">0</p>
+                </div>
+                <div class="stat-card winrate">
+                    <h3>Taxa de Vitória</h3>
+                    <p class="stat-value" id="winRate">0%</p>
+                </div>
+            </div>
+
+            <!-- Champion Stats -->
+            <div class="section">
+                <h2>🏆 Campeões Mais Usados</h2>
+                <div id="championStats" class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Campeão</th>
+                                <th>Partidas</th>
+                                <th>Vitórias</th>
+                                <th>Derrotas</th>
+                                <th>Win Rate</th>
+                                <th>KDA Médio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="championTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Friends Stats -->
+            <div class="section">
+                <h2>👥 Amigos (Jogadores Frequentes)</h2>
+                <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">Jogadores com quem você jogou 2 ou mais partidas juntos</p>
+                <div id="friendStats" class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Jogador</th>
+                                <th>Partidas Juntos</th>
+                                <th>Vitórias</th>
+                                <th>Derrotas</th>
+                                <th>Win Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="friendTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Matches -->
+            <div class="section">
+                <h2>🎮 Partidas Recentes</h2>
+                <div id="matchStats" class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Resultado</th>
+                                <th>Campeão</th>
+                                <th>KDA</th>
+                                <th>K / D / A</th>
+                                <th>Level</th>
+                                <th>CS</th>
+                                <th>Gold</th>
+                                <th>Duração</th>
+                                <th>Modo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matchTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
